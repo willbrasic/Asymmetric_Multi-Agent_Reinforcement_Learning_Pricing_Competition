@@ -1,4 +1,4 @@
-# Heterogeneous_MARL_Pricing_Competition
+# Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition
 
 This project allows different algorithms to engage in Bertrand pricing competition to determine if they can achieve levels above the competitive Bertrand-Nash outcome.
 
