@@ -65,7 +65,8 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ### Prerequisites
 
-  The main dependencies are MATLAB and C++.
+  The main dependencies are any recent version of MATLAB and version 11 or greater
+  of C++.
 
   ### Installation
 
@@ -82,4 +83,4 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   Here are training curves for the profit measure Δ (defined in the paper) and
   consumer surplus:
 
-  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/tree/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
+  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
