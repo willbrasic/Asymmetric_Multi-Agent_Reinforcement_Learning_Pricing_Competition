@@ -1,8 +1,8 @@
 % Title: Logit Competitive Equilibrium Solver Using Fixed Point Iteration
-% Author: William B. Brasic and Matthijs Wildenbeest
+% Author: William B. Brasic
 % Work Address: The University of Arizona
-% Email: wbrasic@arizona.edu and wildenbeest@arizona.edu
-% Website: 
+% Email: wbrasic@arizona.edu
+% Website:
 % October 2023; Last revision: 11 December 2023
 
 
@@ -10,18 +10,18 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Preliminaries   
+% Preliminaries
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Do not show warnings
-warning off all;   
+warning off all;
 
 % Numbers are rounded
-format longG;  
+format longG;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Simulation Primitives   
+% Simulation Primitives
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -66,13 +66,13 @@ while norm > tol && avgnorm > tol
 
     % Set pj equal to the initialized prices
     pj = pj0;
-    
+
     % Compute demand for each firm using pj
     comp_q = exp((a-pj)./mu)/(exp(a0./mu)+sum(exp((a-pj)./mu)));
 
-    % Compute prices (unique symmetric eq. price) with eta parameter 
+    % Compute prices (unique symmetric eq. price) with eta parameter
     pj0 = eta*pj+(1-eta)*(c+mu./(1-comp_q));
-    
+
     % Obtain the distance between old prices pj and new prices pj0
     t = abs(pj0-pj);
 
@@ -90,11 +90,11 @@ while norm > tol && avgnorm > tol
 
     % If we get to 50 loops, we probably are not convering so quit the
     % program
-    if i == 1000 
+    if i == 1000
         fprintf(1,'Probably not converging---quiting fixed point routine (avgnorm = %1.6f).\n',avgnorm)
-        norm = tol; avgnorm = tol; 
+        norm = tol; avgnorm = tol;
     end
-end 
+end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,7 +102,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Competitive prices across the firms 
+% Competitive prices across the firms
 comp_p = pj0;
 
 % Competitive demand across the firms
@@ -139,7 +139,3 @@ fprintf(1,'\n---------------------------------------------------------\n');
 
 
 %------------- END OF CODE --------------
-
-
-
-
