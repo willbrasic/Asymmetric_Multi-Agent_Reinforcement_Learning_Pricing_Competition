@@ -34,7 +34,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ### Description of Repository
 
-  The Repository contains three main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
+  The Repository contains four main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
   SARSA_Qlearning_C++_OOP, and SARSA_Qlearning_C++_Heat_Map.
 
   The Logit_Equilibrium folder contains code for finding the purely
