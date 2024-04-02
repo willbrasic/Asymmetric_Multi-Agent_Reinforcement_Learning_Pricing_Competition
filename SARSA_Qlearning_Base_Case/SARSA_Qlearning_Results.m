@@ -1,14 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SARSA and Q-learning Results
-% William B. Brasic 
+% William B. Brasic
 % The University of Arizona
-% wbrasic@arizona.edu 
-% Website: 
+% wbrasic@arizona.edu
+% Website:
 % October 2023; Last Revision: 2 March 2024
 %
-% This project obtains results for SARSA and Q-learning 
+% This project obtains results for SARSA and Q-learning
 % agents engaging in price competition.
-% 
+%
 % Before executing script:
 % 1. Ensure R is correct
 % 2. Ensure version is correct
@@ -16,25 +16,25 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Preliminaries   
+% Preliminaries
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % Clear workspace
-clear;  
+clear;
 
 % Do not show warnings
-warning off all; 
+warning off all;
 
 % Numbers are rounded without scientific notation
-format longG;    
+format longG;
 
 % Colors for plots
 color_1 = [0 0 0];
 color_2 = [0.3010 0.7450 0.9330];
 
 % Number of episodes
-E = 2;
+E = 100;
 
 % Run to compute results for
 R = 1;
@@ -63,7 +63,7 @@ rp_file_name = strcat('SARSA_Qlearning_', version, '\SARSA_Qlearning_', ...
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Logit Demand Equilibrium 
+% Logit Demand Equilibrium
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -85,10 +85,10 @@ run('Logit_Equilibrium\Logit_Collusive_Equilibrium.m');
 % Clear console
 clc;
 
-% Read in final results 
+% Read in final results
 results_final = readtable(results_final_file_name);
 
-% Mean convergence            
+% Mean convergence
 mean_converge = results_final.MeanConvergence;
 
 % Mean market and firm Delta
@@ -175,16 +175,16 @@ r_lc = table2array(lc(:, 1:100));
 % Learning curve consumer surplus for each episode
 cs_lc = table2array(lc(:, 101:200));
 
-% Replace zero values for profit learning curve using 
+% Replace zero values for profit learning curve using
 % last non-zero element in epsisode *e* for firm i
 for e = 1:size(r_lc, 2)
     % Replace zero values for r_lc using last non_zero element for
     % episode *e*
     last_non_zero_r_lc = find(r_lc(:, e) ~= 0, 1, 'last');
-    r_lc(r_lc(:, e) == 0, e) = r_lc(last_non_zero_r_lc, e); 
+    r_lc(r_lc(:, e) == 0, e) = r_lc(last_non_zero_r_lc, e);
 end
 
-% Replace zero values for consumer surplus learning curve using 
+% Replace zero values for consumer surplus learning curve using
 % last non-zero element in epsisode *e* for firm i
 for e = 1:size(cs_lc, 2)
     % Replace zero values for cs_lc using last non_zero element for
@@ -193,7 +193,7 @@ for e = 1:size(cs_lc, 2)
     cs_lc(cs_lc(:, e) == 0, e) = cs_lc(last_non_zero_cs_lc, e);
 end
 
-% Learning curve Delta averaged across firms for each episode 
+% Learning curve Delta averaged across firms for each episode
 Delta_lc = (r_lc - mean(comp_pi)) ./ (mean(coll_pi) - mean(comp_pi));
 
 % Learning curve Delta averaged across episodes and then across firms
@@ -229,7 +229,7 @@ hold off;
 title('Learning Curves', 'FontSize', 12);
 subtitle('SARSA vs. Q-learning', 'FontSize', 12);
 ylabel('\Delta');
-ylim([min(Delta_lc_avg) - 0.1, 1 + 0.1]);  
+ylim([min(Delta_lc_avg) - 0.1, 1 + 0.1]);
 xticklabels([]);
 legend('Location', 'Northwest');
 grid on;
@@ -244,7 +244,7 @@ yline(coll_cs, '--red', 'LineWidth', 2);
 yline(comp_cs, '--blue', 'LineWidth', 2);
 hold off;
 ylabel('Consumer Surplus');
-ylim([coll_cs - 0.1, comp_cs + 0.1]); 
+ylim([coll_cs - 0.1, comp_cs + 0.1]);
 xlabel('Time Step');
 xtickangle(45);
 xticklabels({'10K', '100K', '200K', '300K', '400K', '500K', '600K', '700K'});
@@ -281,11 +281,11 @@ hold on;
 h2 = bar(highlighted_bar_1 , action_store_avg(1, highlighted_bar_1 ), 'FaceColor', color_2);
 hold off;
 ax1 = gca;
-ax1.YAxis.Exponent = 0; 
+ax1.YAxis.Exponent = 0;
 title('Distribution of Executed Actions', 'FontSize', 12);
 subtitle('SARSA', 'FontSize', 12);
 ylabel('Count');
-ylim([0, max(action_store_avg(1, :)) + 50000]); 
+ylim([0, max(action_store_avg(1, :)) + 50000]);
 yticklabels({'0', '100K', '200K', '300K', '400K'});
 xticklabels([]);
 legend([h2], {'Mean Profit Maximizing Action'}, 'Location', 'Northwest');
@@ -301,7 +301,7 @@ ax2 = gca;
 ax2.YAxis.Exponent = 0;
 subtitle('Q-learning', 'FontSize', 12);
 ylabel('Count');
-ylim([0, max(action_store_avg(2, :)) + 50000]); 
+ylim([0, max(action_store_avg(2, :)) + 50000]);
 yticks(ax2, [0 100000 200000 300000 400000, 500000]); % Set y-ticks positions
 yticklabels(ax2, {'0', '100K', '200K', '300K', '400K', '500K'}); % Set y-tick labels
 xlabel('Action');
@@ -337,7 +337,7 @@ subtitle('SARSA vs. Q-learning', 'FontSize', 12);
 ylabel('Price');
 ylim([min(comp_p) - 0.1, max(coll_p) + 0.1]);
 xticklabels([]);
-legend('Location', 'Northwest');  
+legend('Location', 'Northwest');
 grid on;
 
 % Plot p_rp_avg when agent 2 deviates
@@ -352,13 +352,5 @@ ylabel('Price');
 ylim([min(comp_p) - 0.1, max(coll_p) + 0.1]);
 xlabel('Time Step');
 xtickangle(45);
-legend('Location', 'Northwest');  
+legend('Location', 'Northwest');
 grid on;
-
-
-
-
-
-
-
-
