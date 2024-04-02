@@ -93,7 +93,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   Furthermore, the next image demonstrates that each algorithm can successfully
   implement reward-punishment schemes. A pricing deviation at time step t = 3 by
   SARSA (Q-learning) is met with a swift punishment by Q-learning (SARSA) in t = 4.
-  Subseqntly, prices return to their anti-competitive pre-deviation level
+  Subsequently, prices return to their anti-competitive pre-deviation level
   shortly thereafter.
 
   ![Picture 2](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_RP.png)
@@ -103,6 +103,6 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   those levels averaged across the last 100,000 time steps prior to convergence
   across all episodes. This gives further evidence to the algorithms learning
   collusive strategies that result in higher profits for each agent, while
-  consumer welfare concurrently diminishes.
+  concurrently diminishing consumer welfare.
 
     ![Picture 3](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
