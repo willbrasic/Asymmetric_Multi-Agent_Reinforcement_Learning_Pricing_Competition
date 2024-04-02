@@ -7,7 +7,7 @@ of the repository.
 ## Overview
 
 This repository contains code for allowing two distinct tabular based reinforcement learning methods,
-SARSA and Q-learning, in a Bertrand-Markov pricing game. The purpose of this project is to determine if such
+SARSA and Q-learning, to engage in a Bertrand-Markov pricing game. The purpose of this project is to determine if such
 algorithms engaging in an unknown environment can learn collusive outcomes and sustain them in equilibrium
 using trigger strategies. The environment is coded in MATLAB and subsequently re-coded in C++
 to gain more computing power and make use of object-oriented programming (OOP) design.
@@ -15,7 +15,8 @@ This project is largely inspired by the seminal Calvano et al. (2020) paper.
 
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
-outcomes can be sustained via using reward-punishment schemes.
+outcomes can be sustained via using reward-punishment schemes. The paper in
+its full depth is located in the repository at SARSA_Qlearning.pdf.
 
 ## Table of Contents
 
@@ -35,8 +36,13 @@ outcomes can be sustained via using reward-punishment schemes.
 
   ### Description of Repository
 
-  The Repository contains three main folders: SARSA_Qlearning_Matlab,
+  The Repository contains three main folders: Logit_Equilibrium_MATLAB, SARSA_Qlearning_Matlab,
   SARSA_Qlearning_C++_OOP, and SARSA_Qlearning_C++_Heat_Map.
+
+  The Logit_Equilibrium_MATLAB folder contains code for finding the purely
+  competitive and collusive outcomes when using a logit model of demand.
+  Such outcomes are found using fixed-point iteration. This folder is needed
+  to run the MATLAB script outlined next.
 
   SARSA_Qlearning_Matlab contains the code SARSA_Qlearning_Base_Case.m  to
   replicate the baseline results in MATLAB as well as the plotting script
@@ -76,6 +82,4 @@ outcomes can be sustained via using reward-punishment schemes.
   Here are training curves for the profit measure Δ (defined in the paper) and
   consumer surplus:
 
-  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogeneous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
-
-  
+  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/tree/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
