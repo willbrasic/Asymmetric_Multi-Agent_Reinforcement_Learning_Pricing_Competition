@@ -78,9 +78,28 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   cd Heterogeneous_MARL_Pricing_Competition
   ```
 
-  ## Training Curves
+  ## Results
 
-  Here are training curves for the profit measure Δ (defined in the paper) and
-  consumer surplus:
+  Below are training curves for the profit measure Δ (defined in the paper) and
+  consumer surplus. Evidently, by interacting with each other in the foreign
+  environment, these algorithms can learn anti-competitive outcomes given
+  enough time.
 
-  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
+  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/tree/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
+
+  Furthermore, the next image demonstrates that each algorithm can successfully
+  implement reward-punishment schemes. A pricing deviation at time step t = 3 by
+  SARSA (Q-learning) is met with a swift punishment by Q-learning (SARSA) in t = 4.
+  Subseqntly, prices return to their anti-competitive pre-deviation level
+  shortly thereafter.
+
+  ![Picture 2](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/tree/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_RP.png)
+
+  Lastly, the results of Table 1 show the profit gain measure Δ as well as
+  percentage changes going from the one-shot Bertrand-Nash outcome to
+  those levels averaged across the last 100,000 time steps prior to convergence
+  across all episodes. This gives further evidence to the algorithms learning
+  collusive strategies that result in higher profits for each agent, while
+  consumer welfare concurrently diminishes.
+
+    ![Picture 3](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/tree/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
