@@ -1,41 +1,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SARSA and Q-learning Base Case
-% William B. Brasic 
+% William B. Brasic
 % The University of Arizona
-% wbrasic@arizona.edu 
-% Website: 
+% wbrasic@arizona.edu
+% Website:
 % October 2023; Last Revision: 16 March 2024
 %
 % This project simulates SARSA and Q-learning price competition
-% for the base case model
-% 
+% for the base case model.
+%
 % Before executing script:
 % 1. Ensure R is correct
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Preliminaries   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+% Preliminaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % Clear workspace
-clear;  
+clear;
 
 % Do not show warnings
-warning off all; 
+warning off all;
 
 % Numbers are rounded without scientific notation
-format longG;      
+format longG;
 
 % Reset random number generator
 rng(0,'twister');
 
 % Number of episodes
-E = 2;                 
+E = 100;
 
 % Run (for saving results)
-R = 2;     
+R = 1;
 
 % Version of SARSA and Q-learning simulation
 version = 'Base_Case';
@@ -62,7 +62,7 @@ rp_file_name = strcat('SARSA_Qlearning_', version, '\SARSA_Qlearning_', ...
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Logit Demand Equilibrium 
+% Logit Demand Equilibrium
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -77,7 +77,7 @@ run('Logit_Equilibrium\Logit_Collusive_Equilibrium.m');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Simulation Primitives   
+% Simulation Primitives
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -100,7 +100,7 @@ beta = 1e-5;           % Experimentation rate
 
 % Minimum and maximum prices
 Amin = 1.0;
-Amax = 2.1; 
+Amax = 2.1;
 
 % Discretization of the action space A (m equally spaced points)
 A = linspace(Amin, Amax, m);
@@ -108,7 +108,7 @@ A = linspace(Amin, Amax, m);
 % Size of state space
 S_cardinality = m^(n * k);
 
-% All possible combinations of actions for firms 
+% All possible combinations of actions for firms
 As = A;
 for i = 1:n-1
     As = combvec(As, A);
@@ -124,13 +124,13 @@ q = exp((a - p) ./ mu) ./ (sum(exp((a - p) ./ mu)) + exp(a_0 ./ mu));
 rvn = sum(p .* q);
 
 % Consumer surplus
-cs = mu .* log(sum(exp((a - p) ./ mu)) + exp(a_0 ./ mu)); 
+cs = mu .* log(sum(exp((a - p) ./ mu)) + exp(a_0 ./ mu));
 
 % Profits for each firm in each state
-r = (p - c) .* q;   
+r = (p - c) .* q;
 
 % Find average profit of the states when firm i sets price j
-for i = 1:n 
+for i = 1:n
     for j = 1:m
         Qi0(i, j) = mean(r(i, p(i, :) == A(j))) ./ (1 - delta);
     end
@@ -142,10 +142,10 @@ fprintf(1,'* SIMULATION RESULTS *\n');
 fprintf(1,'**********************\n');
 
 % Delete old file storing results of each episode
-delete(results_file_name);   
+delete(results_file_name);
 
 % Start new file storing results for each episode
-results = fopen(results_file_name,'at');  
+results = fopen(results_file_name,'at');
 
 % If file opened successfully, write file headers
 if results ~= -1
@@ -158,17 +158,17 @@ if results ~= -1
     fprintf(results, 'Revenue\t');
     fprintf(results, 'CS\t');
     fprintf(results, '\n');
-    fclose(results); 
+    fclose(results);
 end
 
 % Calculate argmax(Q) once every *convergence_check* repetitions to check for convergence
-convergence_check = 100; 
+convergence_check = 100;
 
 % Number of time steps needed for argmax(Q) to be constant for convergence
-norm = 100000 / convergence_check; 
+norm = 100000 / convergence_check;
 
 % Number of time steps allowed per episode
-maxt = 10000001;     
+maxt = 10000001;
 
 % Compute learning curve data every *lc_check* time steps
 lc_check = 10000;
@@ -176,7 +176,7 @@ lc_check = 10000;
 % Display results for episode *e* every *results_check* time steps
 results_check = 100000;
 
-% Time steps used for reward punishment (RP) scheme test 
+% Time steps used for reward punishment (RP) scheme test
 t_rp = 19;
 
 % Initialize matrix to store taken actions
@@ -196,29 +196,29 @@ Q = zeros(S_cardinality, m, n);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Begin Episode Loop  
+% Begin Episode Loop
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % Start looping over episodes
 for e = 1:E
-    
+
     % Start timer
-    tic                         
+    tic
 
     % Clear variables at the start of each episode
-    clear action cs expl p r q state  
-    
-    % Each firm's Q-matrix is initialized with average profits when setting each of the m possible prices 
+    clear action cs expl p r q state
+
+    % Each firm's Q-matrix is initialized with average profits when setting each of the m possible prices
     for i = 1:n
-        Q(:, :, i, e) = ones(S_cardinality, 1) * Qi0(i, :); 
+        Q(:, :, i, e) = ones(S_cardinality, 1) * Qi0(i, :);
     end
-    
+
     % Randomly determine intitial actions
     for i = 1:n
         a_t0(i, 1) = randperm(m, 1);
     end
- 
+
     % Determine initial state
     temp = a_t0(1, 1);
     for i = 2:n
@@ -226,43 +226,43 @@ for e = 1:E
         temp = temp + (a_t0(i, 1) - 1) * (m^(i - 1));
     end
 
-    % Get initial state which is a function of the intitial action 
+    % Get initial state which is a function of the intitial action
     state(1) = temp;
-    
-    % Initalize convergence counter to 0 
-    convergence_count = 0; 
-    
+
+    % Initalize convergence counter to 0
+    convergence_count = 0;
+
     % Initialize time step to 1
     t = 1;
 
     % Initialize a counter for plotting training curves
     lc_count = 1;
-    
+
     % Print episode e of E total
     fprintf('\nEpisode %1.0f of %1.0f total. Time Step: ', [e;E]);
 
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Begin Time Step Loop  
+    % Begin Time Step Loop
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    
+
     % While max time steps not reached and convergence not achieved
     while ((t < maxt) && (convergence_count < norm))
-        
+
         % Get actions for each firm
         for i = 1:n
             % Only pick action for i = 1 (SARSA) in t = 1 b/c it's done below
             % for the remainder of time steps
-            if ((i == 1 && t == 1) || (i == 2)) 
-                % Explore 
-                if rand(1, 1) < exp(-beta * t) 
+            if ((i == 1 && t == 1) || (i == 2))
+                % Explore
+                if rand(1, 1) < exp(-beta * t)
                     % Take uniform random action
                     action(i, t) = randperm(m, 1);
-                % Exploit 
+                % Exploit
                 else
                     % Take greedy action
-                    action(i, t) = find(Q(state(t), :, i, e) == max(Q(state(t), :, i, e)), 1); 
+                    action(i, t) = find(Q(state(t), :, i, e) == max(Q(state(t), :, i, e)), 1);
                 end
             end
             % Increment counter for action taken
@@ -276,45 +276,45 @@ for e = 1:E
             temp = temp + (action(i, t) - 1) * (m^(i - 1));
         end
 
-        % Subsequent state which is a function of prior period action 
+        % Subsequent state which is a function of prior period action
         state(t + 1) = temp;
-             
+
         % Loop over firms to get their price
         for i = 1:n
             % Set firm i's price for time step t
-            p(i, t) = A(action(i, t)); 
+            p(i, t) = A(action(i, t));
         end
-                         
+
         % Quantity for each firm at time step t
         q(:, t) = exp((a - p(:, t)) ./ mu) ./ (sum(exp((a - p(:, t)) ./ mu)) + exp(a_0 ./ mu));
-        
+
         % Consumer surplus at time step t
         cs(t) = mu .* log(sum(exp((a - p(:, t)) ./ mu)) + exp(a_0 ./ mu));
-        
+
         % Profits for each firm at time step t
         r(:, t) = (p(:, t) - c) .* q(:, t);
 
         % Store data for learning curves every lc_check time steps
         if ((mod(t, lc_check) == 0) && (t <= 700001))
-            % Store mean profits across firms 
+            % Store mean profits across firms
             r_lc(lc_count, e) = mean(mean(r(:, t-9999:t), 2));
             % Store mean consumer surplus
-            cs_lc(lc_count, e) = mean(cs(t - 9999:t));                
+            cs_lc(lc_count, e) = mean(cs(t - 9999:t));
             % Increment the learning curve counter
             lc_count = lc_count + 1;
         end
-                 
+
         % Update Q-matrix
         for i = 1:n
             if i == 1
                 % Get i's action in next state to use for SARSA update
-                if rand(1, 1) < exp(-beta * (t + 1)) 
-                    action(i, t + 1) = randperm(m, 1); 
+                if rand(1, 1) < exp(-beta * (t + 1))
+                    action(i, t + 1) = randperm(m, 1);
                 else
                     action(i, t + 1) = find(Q(state(t + 1), :, i, e) == max(Q(state(t + 1), :, i, e)), 1);
                 end
                 % SARSA Update
-                Q(state(t), action(i, t), i, e) = (1 - alpha) .* Q(state(t), action(i,t), i, e) + ... 
+                Q(state(t), action(i, t), i, e) = (1 - alpha) .* Q(state(t), action(i,t), i, e) + ...
                     alpha .* (r(i, t) + delta .* Q(state(t + 1), action(i, t + 1), i, e));
             else
                 % Q-learning Update
@@ -322,7 +322,7 @@ for e = 1:E
                     alpha .* (r(i, t) + delta .* max(Q(state(t + 1), :, i, e)));
             end
         end
-        
+
         % Check for convergence every *convergence_check* time steps
         if mod(t, convergence_check) == 0
             if (t / convergence_check) > 1
@@ -330,51 +330,51 @@ for e = 1:E
                 [~, amax2] = max(Q(:, :, :, e), [], 2);
                 % Check if prior period's optimal actions for each firm
                 % in each state is the same as this period
-                if sum(sum(amax2 == amax1)) == n * S_cardinality 
+                if sum(sum(amax2 == amax1)) == n * S_cardinality
                     convergence_count = convergence_count + 1;
                 else
                     convergence_count = 0;
-                end                
+                end
                 % Set the old optimal action indices to the new ones
                 amax1 = amax2;
             else
                 % Find only the indices of the maximal actions for each state for each firm
-                [~, amax1] = max(Q(:, :, :, e), [], 2);      
+                [~, amax1] = max(Q(:, :, :, e), [], 2);
             end
         end
-              
+
         % Display counter every *results_check* time steps
         if mod(t, results_check) == 0
             if t > results_check
                 % Delete previous counter display
                 for j = 0:log10(t - 1)
-                    fprintf('\b'); 
+                    fprintf('\b');
                 end
             end
             % Print the time
-            fprintf('%d', t); 
+            fprintf('%d', t);
             % Allows time for display to update
-            pause(.05); 
+            pause(.05);
         end
-        
+
         % Update time step
         t = t + 1;
 
     % End while loop
     end
-    
+
     % Print new line
     fprintf('\n')
 
     % Stop timer
-    tt = toc; 
-        
+    tt = toc;
+
     % Averge profit over last *results_check* time steps of episode *e*
     r_e(:, e) = mean(r(1:n, t - results_check:t - 1), 2);
 
     % Average Delta over last *results_check* time steps of episode *e*
     Delta_e(:, e) = (r_e(:, e) - comp_pi) ./ (coll_pi - comp_pi);
-    
+
     % Average price over last *results_check* time steps of episode *e*
     p_e(:, e) = mean(p(:, t - results_check:t - 1), 2);
 
@@ -390,7 +390,7 @@ for e = 1:E
 
     % Average revenue over last *results_check* time steps of episode *e*
     rvn_e(:, e) = mean((p(:, t - results_check:t - 1) .* q(:, t - results_check:t - 1)), 2);
-    
+
     % Track iterations until convergence for episode *e*
     converge(e) = t - 1;
 
@@ -398,7 +398,7 @@ for e = 1:E
     if t == maxt
         fprintf(1, 'Did not converge.\n');
     else
-        fprintf(1, '# of time steps until convergance: %1.0f\n', t - 1);  
+        fprintf(1, '# of time steps until convergance: %1.0f\n', t - 1);
     end
 
     % Results for episode *e* of *E* averaged over last *results_check* time steps
@@ -422,12 +422,12 @@ for e = 1:E
     fprintf(1,'    %1.4f', rvn_e(:, e))
     fprintf(1,'\nCS              %1.4f', cs_e(:, e))
     fprintf(1,'\n---------------------------------------------------------\n');
-    
+
     % Open file to write results to
-    results = fopen(results_file_name, 'at'); 
+    results = fopen(results_file_name, 'at');
 
     % If file opened successfully, write results of episode *e*
-    if results ~= -1 
+    if results ~= -1
         fprintf(results, '%1.0f\t', e);
         fprintf(results, '%1.0f\t', converge(e));
         fprintf(results, '%1.14f\t', mean(r_e(:, e)));
@@ -437,18 +437,18 @@ for e = 1:E
         fprintf(results, '%1.14f\t', sum(rvn_e(:, e)));
         fprintf(results, '%1.14f\t', cs_e(:, e));
         fprintf(results, '\n');
-        fclose(results); 
-    end 
+        fclose(results);
+    end
 
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Reward-Punishment Test 
+    % Reward-Punishment Test
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
     % Agent j corresponds to the deviator
     for j = 1:n
-        
+
         % Initialization for RP test
         Q_rp = Q;
         state_rp = state;
@@ -458,23 +458,23 @@ for e = 1:E
 
         % Re-initialize t to convergence achieved for episode *e*
         t = converge(e);
-        
+
         % Second index for p_rp
         p_rp_2 = 1 + t - converge(e);
-        
+
         % While t is less than or equal to t_rp
         while t <= converge(e) + t_rp
-            
+
             % Get the actions for each firm
             for i = 1:n
                 % Ensure both firms have action at first time step
                 if ((i == 1 && t == converge(e)) || (i == 2))
                     % Explore
-                    if rand(1, 1) < exp(-beta * (t)) 
+                    if rand(1, 1) < exp(-beta * (t))
                         % Take uniform random action
-                        action_rp(i, t) = randperm(m, 1); 
+                        action_rp(i, t) = randperm(m, 1);
                     % Exploit
-                    else 
+                    else
                         % Take greedy action
                         action_rp(i, t) = find(Q_rp(state_rp(t), :, i, e) ...
                             == max(Q_rp(state_rp(t), :, i, e)), 1);
@@ -491,20 +491,20 @@ for e = 1:E
                 action_rp(j, t) = 7;
             end
 
-            % Determine subsequent state 
+            % Determine subsequent state
             temp = action_rp(1, t);
             for i = 2:n
-                % Modify temp in some way that it lies in {1,...,S_cardinality} 
+                % Modify temp in some way that it lies in {1,...,S_cardinality}
                 temp = temp + (action_rp(i, t) - 1) * (m^(i - 1));
             end
 
-            % Subsequent state which is a function of prior period action 
+            % Subsequent state which is a function of prior period action
             state_rp(t + 1) = temp;
 
             % Loop over firms to get their price
             for i = 1:n
-                % Set firm i's price 
-                p_rp(i, p_rp_2, j, e) = A(action_rp(i, t)); 
+                % Set firm i's price
+                p_rp(i, p_rp_2, j, e) = A(action_rp(i, t));
             end
 
             % Quantity for each firm for time step t
@@ -521,11 +521,11 @@ for e = 1:E
                 % has an action selection at third time step
                 if ((i == 1 && t ~= converge(e) + 1) || (i == 1 && j == 2))
                     % Explore
-                    if rand(1, 1) < exp(-beta * (t + 1)) 
+                    if rand(1, 1) < exp(-beta * (t + 1))
                         % Take uniform random action
-                        action_rp(i, t + 1) = randperm(m,1); 
+                        action_rp(i, t + 1) = randperm(m,1);
                     % Exploit
-                    else 
+                    else
                         % Take greedy action
                         action_rp(i, t + 1) = find(Q_rp(state_rp(t + 1), :, i, e) ...
                             == max(Q_rp(state_rp(t + 1), :, i, e)), 1);
@@ -533,7 +533,7 @@ for e = 1:E
                 end
             end
 
-            % Update Q-matrix 
+            % Update Q-matrix
             for i = 1:n
                 if i == 1
                     % SARSA Update
@@ -568,9 +568,6 @@ end
 % Simulation Results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-total_r_e_std_dev = std(sum(r_e, 1), 0);
-r_e_std_dev = std(r_e, 0, 2);
-
 
 % Average results across *E* episodes
 fprintf(1,'\n*********************************************************\n');
@@ -587,8 +584,6 @@ fprintf(1,'\nDelta           %1.4f', mean(mean(Delta_e), 2))
 fprintf(1,'    %1.4f', mean(Delta_e, 2))
 fprintf(1,'\nProfits         %1.4f', mean(sum(r_e), 2))
 fprintf(1, '    %1.4f', mean(r_e, 2));
-fprintf(1, '\n');
-fprintf(1, '                         (%1.4f)  (%1.4f)', r_e_std_dev(1), r_e_std_dev(2));
 fprintf(1,'\nDemand          %1.4f', mean(sum(q_e), 2))
 fprintf(1,'    %1.4f', mean(q_e, 2))
 fprintf(1,'\nPrices          %1.4f', mean(p_market_e, 2))
@@ -621,10 +616,10 @@ fprintf(1,'\nCS             %1.2f%%', 100*(mean(cs_e, 2) - comp_cs)/comp_cs)
 fprintf(1,'\n---------------------------------------------------------\n');
 
 % Delete old final results file storing results averaged over *E* episodes
-delete(results_final_file_name);   
+delete(results_final_file_name);
 
 % Start new final results file storing results averaged over *E* episodes
-results_final = fopen(results_final_file_name, 'at');  
+results_final = fopen(results_final_file_name, 'at');
 
 % If file opened successfully, write file headers
 if results_final ~= -1
@@ -652,28 +647,28 @@ if results_final ~= -1
     fprintf(results_final, 'Mean_CS\t');
     fprintf(results_final, '\n');
     fclose(results_final);
-end 
+end
 
 % Open file to write final results to
-results_final = fopen(results_final_file_name, 'at'); 
+results_final = fopen(results_final_file_name, 'at');
 
 % If file opened successfully, write final results averaged over *E* episodes
-if results_final ~= -1 
+if results_final ~= -1
     fprintf(results_final, '%1.0f\t', mean(converge));
     fprintf(results_final, '%1.14f\t', mean(mean(Delta_e), 2));
     fprintf(results_final, '%1.14f\t', mean(Delta_e, 2));
     fprintf(results_final, '%1.14f\t', mean(sum(r_e), 2));
     fprintf(results_final, '%1.14f\t', mean(r_e, 2));
     fprintf(results_final, '%1.14f\t', mean(sum(q_e), 2));
-    fprintf(results_final, '%1.14f\t', mean(q_e, 2)); 
+    fprintf(results_final, '%1.14f\t', mean(q_e, 2));
     fprintf(results_final, '%1.14f\t', mean(p_market_e, 2));
     fprintf(results_final, '%1.14f\t', mean(p_e, 2));
     fprintf(results_final, '%1.14f\t', mean(sum(rvn_e), 2));
     fprintf(results_final, '%1.14f\t', mean(rvn_e, 2));
     fprintf(results_final, '%1.14f\t', mean(cs_e, 2));
     fprintf(results_final, '\n');
-    fclose(results_final); 
-end 
+    fclose(results_final);
+end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -692,7 +687,7 @@ writetable(lc_data, lc_file_name);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Average taken actions across *E* episodes 
+% Average taken actions across *E* episodes
 action_store_avg = mean(action_store, 3);
 
 % Create a table to store taken action distribution results
@@ -716,9 +711,3 @@ for j = 1:n
     writetable(p_rp_data, ...
         strcat(rp_file_name, num2str(j), '_', num2str(R), '.csv'));
 end
-
-
-
-
-
-
