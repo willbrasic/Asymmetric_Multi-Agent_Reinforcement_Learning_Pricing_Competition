@@ -44,7 +44,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   SARSA_Qlearning_Base_Case contains the code SARSA_Qlearning_Base_Case.m to
   replicate the baseline results in MATLAB as well as the plotting script
-  SARSA_Qlearning_Results.m to generate the plots for the baseline model
+  SARSA_Qlearning_Results.m to generate the plots for the baseline model.
 
   SARSA_Qlearning_C++_OOP contains a much neater implementation of
   SARSA_Qlearning_Base_Case.m used in MATLAB. In this version, I leverage
