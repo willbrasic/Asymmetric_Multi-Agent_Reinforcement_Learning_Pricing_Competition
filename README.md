@@ -45,13 +45,16 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   SARSA_Qlearning_Base_Case contains the code SARSA_Qlearning_Base_Case.m to
   replicate the baseline results in MATLAB as well as the plotting script
-  SARSA_Qlearning_Results.m to generate the plots presented in the paper.
+  SARSA_Qlearning_Results.m to generate the plots for the baseline model
 
   SARSA_Qlearning_C++_OOP contains a much neater implementation of
   SARSA_Qlearning_Base_Case.m used in MATLAB. In this version, I leverage
   object-oriented programming (OOP) design in C++ to create a concise
-  version of the environment. Given the increased computing power of C++,
-  this code runs roughly 50 times faster than the original MATLAB code when
+  version of the environment. I construct an agent superclass and proceed
+  to create SARSA and Q-learning subclasses. Such an implementation allows for
+  inheritance, encapsulation, and polymorhpism, all of which I take advantage of
+  when writing my code. Given the increased computing power of C++,
+  this code runs much faster relative to MATLAB when
   optimizing the compiler for speed by using -0fast (see CMakeLists.txt).
 
   Lastly, SARSA_Qlearning_C++_Heat_Map constructs the environment in C++
@@ -61,7 +64,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   experimentation parameter β. The results for each parameter combination are
   subsequently averaged over one-hundred episode runs and these results are
   used to construct heat maps. I write these outcomes to a .csv file and
-  subsequently construct these heat maps in MATLAB. 
+  subsequently construct these heat maps in MATLAB.
 
   ### Prerequisites
 
