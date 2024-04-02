@@ -11,7 +11,6 @@ SARSA and Q-learning, to engage in a Bertrand-Markov pricing game. The purpose o
 algorithms engaging in an unknown environment can learn collusive outcomes and sustain them in equilibrium
 using trigger strategies. The environment is coded in MATLAB and subsequently re-coded in C++
 to gain more computing power and make use of object-oriented programming (OOP) design.
-This project is largely inspired by the seminal Calvano et al. (2020) paper.
 
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
