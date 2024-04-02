@@ -43,9 +43,6 @@ int main()
     // Preliminaries
     ////////////////////////////////////
 
-    // Set seed
-    std::mt19937 gen(-1);
-
     // Discrete uniform distribution over {0, 1, ..., m-1} to draw actions from
     std::uniform_int_distribution<> dist_1(0, m - 1);
 
