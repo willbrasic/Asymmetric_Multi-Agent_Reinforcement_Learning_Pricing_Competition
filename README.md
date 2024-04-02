@@ -2,7 +2,7 @@
 
 Hi there! Thank you for checking out my repository! This README.md file gives
 details on the Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition project
-of the repository.
+contained in this repository.
 
 ## Overview
 
