@@ -27,7 +27,6 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
     - [Description of Repository](#description-of-repository)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-  - [Training Curves](#training_curves)
   - [Results](#results)
 
   ## Getting Started
@@ -36,15 +35,15 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ### Description of Repository
 
-  The Repository contains three main folders: Logit_Equilibrium_MATLAB, SARSA_Qlearning_Matlab,
+  The Repository contains three main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
   SARSA_Qlearning_C++_OOP, and SARSA_Qlearning_C++_Heat_Map.
 
-  The Logit_Equilibrium_MATLAB folder contains code for finding the purely
+  The Logit_Equilibrium folder contains code for finding the purely
   competitive and collusive outcomes when using a logit model of demand.
   Such outcomes are found using fixed-point iteration. This folder is needed
   to run the MATLAB script outlined next.
 
-  SARSA_Qlearning_Matlab contains the code SARSA_Qlearning_Base_Case.m  to
+  SARSA_Qlearning_Base_Case contains the code SARSA_Qlearning_Base_Case.m to
   replicate the baseline results in MATLAB as well as the plotting script
   SARSA_Qlearning_Results.m to generate the plots presented in the paper.
 
@@ -61,7 +60,8 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   combinations of the learning rate α and the epsilon-greedy
   experimentation parameter β. The results for each parameter combination are
   subsequently averaged over one-hundred episode runs and these results are
-  used to construct heat maps.
+  used to construct heat maps. I write these outcomes to a .csv file and
+  subsequently construct these heat maps in MATLAB. 
 
   ### Prerequisites
 
