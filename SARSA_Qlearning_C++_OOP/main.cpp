@@ -9,7 +9,9 @@
 // December 2023, Last revision: 25 March 2024
 //
 // This project allows SARSA and Q-learning agents
-// to engage in a Bertrand-Markov pricing game
+// to engage in a Bertrand-Markov pricing game.
+// I leverage OOP principles to create a
+// cleaner code. THIS IS STILL A WORK IN PROCESS.
 /////////////////////////////////////////////////////
 
 

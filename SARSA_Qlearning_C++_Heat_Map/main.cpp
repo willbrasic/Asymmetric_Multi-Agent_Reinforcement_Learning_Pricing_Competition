@@ -4,13 +4,13 @@
 // The University of Arizona
 // wbrasic@arizona.edu
 // Website:
-// December 2023, Last revision: 16 March 2024
+// December 2023, Last revision: 5 April 2024
 //
-// This project allows Q-learning and SARSA agents
-// to engage in Bertrand price competition and c
-// creates data for a heat map of the learning rate
-// alpha and the epsilon greedy exploration
-// parameter beta.
+// This project allows SARSA and Q-learning agents
+// to engage in Bertrand-Markov pricing game to
+// compute Δ values for 10,000
+// (α, β) pairs averaged over 100,000 time steps
+// prior to convergence for E = 100 episodes.
 /////////////////////////////////////////////////////
 
 
@@ -467,5 +467,3 @@ int main()
 
     return 0;
 }
-
-
