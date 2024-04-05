@@ -1,4 +1,4 @@
-# Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition
+# Asymmetric Multi-Agent Reinforcement Learning Pricing Competition
 
 Hi there! Thank you for checking out my repository! This README.md file gives
 details on the Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition project
@@ -20,7 +20,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
 ## Table of Contents
 
-- [Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition](#project-name)
+- [Asymmetric Multi-Agent Reinforcement Learning Pricing Competition](#project-name)
   - [Overview](#overview)
   - [Table of Contents](#table-of-contents)
   - [Getting Started](#getting-started)
@@ -88,7 +88,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   environment, these algorithms can learn anti-competitive outcomes given
   enough time.
 
-  ![Picture 1](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
+  ![Picture 1](https://github.com/willbrasic/Asymmetric_MARL_Pricing_Competition/blob/main/Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Learning_Curves.png)
 
   Furthermore, the next image demonstrates that each algorithm can successfully
   implement reward-punishment schemes. A pricing deviation at time step t = 3 by
@@ -96,7 +96,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   Subsequently, prices return to their anti-competitive pre-deviation level
   shortly thereafter.
 
-  ![Picture 2](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_RP.png)
+  ![Picture 2](https://github.com/willbrasic/Asymmetric_MARL_Pricing_Competition/blob/main/Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_RP.png)
 
   Lastly, the results of Table 1 show the profit gain measure Δ as well as
   percentage changes going from the one-shot Bertrand-Nash outcome to
@@ -105,4 +105,4 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
   collusive strategies that result in higher profits for each agent, while
   concurrently diminishing consumer welfare.
 
-    ![Picture 3](https://github.com/willbrasic/Heterogeneous_MARL_Pricing_Competition/blob/main/Heterogenous_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
+    ![Picture 3](https://github.com/willbrasic/Asymmetric_MARL_Pricing_Competition/blob/main/Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
