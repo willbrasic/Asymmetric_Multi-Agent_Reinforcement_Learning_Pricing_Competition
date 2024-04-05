@@ -108,7 +108,7 @@ int main()
         // Print episode e of E total
         std::cout << "Episode " << e + 1 << " of " << E << " total" << "\n\n";
 
-        // Create agents for experiment
+        // Generate initial Q-matrix for each agent
         std::vector<std::vector<double>> initial_Q_matrix = initial_Q_matrix_fn(avg_profits_for_states, n, m, S_cardinality);
 
         // Create Agent objects from SARSA and Qlearning Agent subclasses

@@ -2,7 +2,7 @@
 
 Hi there! Thank you for checking out my repository! This README.md file gives
 details on the Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition project
-of the repository.
+contained in this repository.
 
 ## Overview
 
@@ -11,7 +11,6 @@ SARSA and Q-learning, to engage in a Bertrand-Markov pricing game. The purpose o
 algorithms engaging in an unknown environment can learn collusive outcomes and sustain them in equilibrium
 using trigger strategies. The environment is coded in MATLAB and subsequently re-coded in C++
 to gain more computing power and make use of object-oriented programming (OOP) design.
-This project is largely inspired by the seminal Calvano et al. (2020) paper.
 
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
@@ -35,7 +34,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ### Description of Repository
 
-  The Repository contains three main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
+  The Repository contains four main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
   SARSA_Qlearning_C++_OOP, and SARSA_Qlearning_C++_Heat_Map.
 
   The Logit_Equilibrium folder contains code for finding the purely
@@ -45,7 +44,7 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   SARSA_Qlearning_Base_Case contains the code SARSA_Qlearning_Base_Case.m to
   replicate the baseline results in MATLAB as well as the plotting script
-  SARSA_Qlearning_Results.m to generate the plots for the baseline model
+  SARSA_Qlearning_Results.m to generate the plots for the baseline model.
 
   SARSA_Qlearning_C++_OOP contains a much neater implementation of
   SARSA_Qlearning_Base_Case.m used in MATLAB. In this version, I leverage
