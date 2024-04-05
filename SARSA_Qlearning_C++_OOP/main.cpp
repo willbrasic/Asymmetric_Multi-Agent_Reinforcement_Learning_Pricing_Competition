@@ -11,7 +11,10 @@
 // This project allows SARSA and Q-learning agents
 // to engage in a Bertrand-Markov pricing game.
 // I leverage OOP principles to create a
-// cleaner code. THIS IS STILL A WORK IN PROCESS.
+// cleaner code. THIS IS STILL A WORK IN PROGRESS.
+// THERE IS A BUG SOMEWHERE THAT I HAVE TO FIND.
+// I GET GET SIGNIFICANTLY DIFFERENT
+// RESULTS ACROSS EPISODES.
 /////////////////////////////////////////////////////
 
 
