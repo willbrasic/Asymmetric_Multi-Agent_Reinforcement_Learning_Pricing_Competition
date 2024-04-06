@@ -1,7 +1,7 @@
 # Asymmetric Multi-Agent Reinforcement Learning Pricing Competition
 
 Hi there! Thank you for checking out my repository! This README.md file gives
-details on the Heterogeneous Multi-Agent Reinforcement Learning Pricing Competition project
+details on the Asymmetric Multi-Agent Reinforcement Learning Pricing Competition project
 contained in this repository.
 
 ## Overview
