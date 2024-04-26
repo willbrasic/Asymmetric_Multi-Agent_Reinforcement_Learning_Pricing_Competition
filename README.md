@@ -34,13 +34,15 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ### Description of Repository
 
-  The Repository contains four main folders: Logit_Equilibrium, SARSA_Qlearning_Base_Case,
+  The Repository contains four main folders: Logit_Equilibrium, Paper, SARSA_Qlearning_Base_Case,
   SARSA_Qlearning_C++_OOP, and SARSA_Qlearning_C++_Heat_Map.
 
   The Logit_Equilibrium folder contains code for finding the purely
   competitive and collusive outcomes when using a logit model of demand.
   Such outcomes are found using fixed-point iteration. This folder is needed
   to run the MATLAB script outlined next.
+
+  The Paper folder contains the paper for this project.
 
   SARSA_Qlearning_Base_Case contains the code SARSA_Qlearning_Base_Case.m to
   replicate the baseline results in MATLAB as well as the plotting script
