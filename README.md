@@ -15,7 +15,7 @@ to gain more computing power and make use of object-oriented programming (OOP) d
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
 outcomes can be sustained via using reward-punishment schemes. The paper in
-its full depth is located in the repository at SARSA_Qlearning.pdf.
+its full depth is located in the repository at Paper/SARSA_Qlearning.pdf.
 
 ## Table of Contents
 
@@ -99,11 +99,15 @@ its full depth is located in the repository at SARSA_Qlearning.pdf.
 
   ![Picture 2](Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_RP.png)
 
-  Lastly, the results of Table 1 show the profit gain measure Δ as well as
+  Next, the results of Table 1 show the profit gain measure Δ as well as
   percentage changes going from the one-shot Bertrand-Nash outcome to
   those levels averaged across the last 100,000 time steps prior to convergence
   across all episodes. This gives further evidence to the algorithms learning
   collusive strategies that result in higher profits for each agent, while
   concurrently diminishing consumer welfare.
 
-    ![Picture 3](Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
+  ![Picture 3](Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Base_Case_Results.png)
+
+  Lastly, I show the heat map for the 10,000 different (α, β) pairs.
+
+  ![Picture 3](Asymmetric_MARL_Pricing_Competition_Pictures/SARSA_Qlearning_Heat_Map.png)
