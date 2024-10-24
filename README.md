@@ -2,7 +2,7 @@
 
 Hi there! Thank you for checking out my repository! This README.md file gives
 details on the Asymmetric Multi-Agent Reinforcement Learning Pricing Competition project
-contained in this repository. For the full paper, [please click here](C:\Users\wbras\OneDrive\Desktop\GitHub\Asymmetric_MARL_Pricing_Competition\When_Assymetric_Pricing_Algorithms_Collide.pdf).
+contained in this repository. For the full paper, [please click here](https://github.com/willbrasic/Asymmetric_Multi-Agent_Reinforcement_Learning_Pricing_Competition/blob/main/When_Assymetric_Pricing_Algorithms_Collide.pdf).
 
 ## Overview
 
