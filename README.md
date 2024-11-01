@@ -2,7 +2,7 @@
 
 Hi there! Thank you for checking out my repository! This README.md file gives
 details on the Asymmetric Multi-Agent Reinforcement Learning Pricing Competition project
-contained in this repository. For the full paper, [please click here](https://raw.githubusercontent.com/willbrasic/Asymmetric_Multi-Agent_Reinforcement_Learning_Pricing_Competition/main/When_Assymetric_Pricing_Algorithms_Collide.pdf).
+contained in this repository. For the full paper, [please click here](https://willbrasic.github.io/Research/When_Asymmetric_Pricing_Algorithms_Collide_V2.pdf).
 
 ## Overview
 
@@ -14,7 +14,7 @@ to gain more computing power and make use of object-oriented programming (OOP) d
 
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
-outcomes can be sustained via using reward-punishment schemes. 
+outcomes can be sustained via using reward-punishment schemes.
 
 ## Table of Contents
 
