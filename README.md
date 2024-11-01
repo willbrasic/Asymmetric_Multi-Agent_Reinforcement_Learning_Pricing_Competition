@@ -83,7 +83,7 @@ outcomes can be sustained via using reward-punishment schemes.
 
   ## Docker Image
 
-  A Docker container is available for this project on Docker Hub. This container allows you to run the code without needing to install C++ or set up dependencies on your system.
+  A Docker container is available for this project on Docker Hub. This container allows you to run the code contained in SARSA_Qlearning_C++_OOP without needing to install C++ or set up dependencies on your system.
 
   ### Pull the Docker Image
 
