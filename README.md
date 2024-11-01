@@ -14,8 +14,7 @@ to gain more computing power and make use of object-oriented programming (OOP) d
 
 My results indicate that, indeed, simple asymmetric reinforcement learning algorithms
 can learn anti-competitive outcomes by interacting with each other over time and such
-outcomes can be sustained via using reward-punishment schemes. The paper in
-its full depth is located in the repository at Paper/SARSA_Qlearning.pdf.
+outcomes can be sustained via using reward-punishment schemes. 
 
 ## Table of Contents
 
