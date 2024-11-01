@@ -81,6 +81,18 @@ outcomes can be sustained via using reward-punishment schemes.
   cd Heterogeneous_MARL_Pricing_Competition
   ```
 
+  ## Docker Image
+
+  A Docker container is available for this project on Docker Hub. This container allows you to run the code without needing to install C++ or set up dependencies on your system.
+
+  ### Pull the Docker Image
+
+  To use the containerized version, pull the Docker image from Docker Hub:
+
+  ```bash
+  docker pull willbrasic/sarsa_qlearning:latest
+  ```
+
   ## Results
 
   Below are training curves for the profit measure Δ (defined in the paper) and
