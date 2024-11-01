@@ -447,7 +447,7 @@ void print_results(
     std::vector<double> competitive_revenues = competitive_outcome[3];
     double competitive_cs = competitive_outcome[4][1];
 
-    std::cout << std::fixed << std::setprecision(2);
+    std::cout << std::fixed << std::setprecision(4);
 
     std::cout << "\n****************************************************\n";
     std::cout << "***************** OVERALL RESULTS ******************\n";
@@ -496,6 +496,8 @@ void print_results(
 
     // Average consumer surplus
     std::cout << "\nCS            " << avg_cs;
+
+    std::cout << std::fixed << std::setprecision(2);
 
     std::cout << "\n\n\n****************************************************\n";
     std::cout << "**** PERCENTAGE CHANGE FROM COMPETITIVE OUTCOME ****\n";

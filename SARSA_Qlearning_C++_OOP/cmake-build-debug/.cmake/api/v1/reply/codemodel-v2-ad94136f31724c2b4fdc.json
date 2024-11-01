@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "SARSA_Qlearning",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "SARSA_Qlearning::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SARSA_Qlearning-Debug-dee77d4b4f23964ba69c.json",
+					"name" : "SARSA_Qlearning",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/wbras/OneDrive/Documents/Desktop/UA/2nd_Year_Paper/2nd_Year_Paper_Code_C++/SARSA_Qlearning/cmake-build-debug",
+		"source" : "C:/Users/wbras/OneDrive/Documents/Desktop/UA/2nd_Year_Paper/2nd_Year_Paper_Code_C++/SARSA_Qlearning"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

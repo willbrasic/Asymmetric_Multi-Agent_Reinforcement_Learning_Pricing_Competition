@@ -10,7 +10,7 @@
 namespace Global {
 
     // Parameters demand model
-    const int n{ 3 };                              // Number of firms
+    const int n{ 2 };                              // Number of firms
     const int a_0{ 0 };                            // Inverse index of aggregate demand
     const double mu{ 1.0 / 4.0 };                  // Horizontal differentiation index
     const std::vector<int> mc(n, 1);         // Marginal cost

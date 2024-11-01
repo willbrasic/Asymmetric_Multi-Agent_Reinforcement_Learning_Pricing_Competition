@@ -2,19 +2,14 @@
 /////////////////////////////////////////////////////
 // SARSA and Q-learning Bertrand-Markov Game
 //
-// William B. Brasic
+// William Brasic
 // The University of Arizona
 // wbrasic@arizona.edu
-// Website:
-// December 2023, Last revision: 25 March 2024
+// Website: willbrasic.github.io
+// December 2023, Last revision: 1 November 2024
 //
 // This project allows SARSA and Q-learning agents
-// to engage in a Bertrand-Markov pricing game.
-// I leverage OOP principles to create a
-// cleaner code. THIS IS STILL A WORK IN PROGRESS.
-// THERE IS A BUG SOMEWHERE THAT I HAVE TO FIND.
-// I GET GET SIGNIFICANTLY DIFFERENT
-// RESULTS ACROSS EPISODES.
+// to engage in a Bertrand-Markov pricing game
 /////////////////////////////////////////////////////
 
 
@@ -47,6 +42,9 @@ int main()
     ////////////////////////////////////
     // Preliminaries
     ////////////////////////////////////
+
+    // Set seed
+    std::mt19937 gen(-1);
 
     // Discrete uniform distribution over {0, 1, ..., m-1} to draw actions from
     std::uniform_int_distribution<> dist_1(0, m - 1);
@@ -84,8 +82,7 @@ int main()
     // Power vector used to get next state for all agents
     std::vector<int> power_vector(n, 0.0);
     for (int i{ 0 }; i < n; ++i)
-        power_vector[0] = static_cast<int>(pow(m, i));
-
+        power_vector[i] = static_cast<int>(pow(m, i));
 
     ////////////////////////////////////
     // Episode Loop
@@ -113,18 +110,16 @@ int main()
         // Print episode e of E total
         std::cout << "Episode " << e + 1 << " of " << E << " total" << "\n\n";
 
-        // Generate initial Q-matrix for each agent
+        // Create agents for experiment
         std::vector<std::vector<double>> initial_Q_matrix = initial_Q_matrix_fn(avg_profits_for_states, n, m, S_cardinality);
 
         // Create Agent objects from SARSA and Qlearning Agent subclasses
-        SARSA_Agent SARSA_1(initial_Q_matrix, e);
-        SARSA_Agent SARSA_2(initial_Q_matrix, e + 1);
-        Qlearning_Agent Qlearning_1(initial_Q_matrix, e + 2);
+        SARSA_Agent Sarsa_1(initial_Q_matrix, e);
+        Qlearning_Agent Qlearning_1(initial_Q_matrix, e + 1);
 
         // Vector to store pointers to subclass instances
         std::vector<Agent*> Agents;
-        Agents.push_back(&SARSA_1);
-        Agents.push_back(&SARSA_2);
+        Agents.push_back(&Sarsa_1);
         Agents.push_back(&Qlearning_1);
 
         // Ensure number of agent objects is equal to Global::n
@@ -406,6 +401,7 @@ int main()
     ////////////////////////////////////
 
 
+    // Show competitive outcome
     std::vector<std::vector<double>> competitive_outcome = logit_competitive_outcome_fn(a, mc, mu, n, a_0, 150);
     for (const auto& vec : competitive_outcome)
     {
@@ -422,7 +418,7 @@ int main()
                   a_0, 150);
 
     // Write learning_curve_profits to a CSV file
-    std::ofstream learning_curve_profits_file(R"(C:\Users\wbras\OneDrive\Desktop\UA\2nd_Year_Paper\2nd_Year_Paper_Code_C++\SARSA_Qlearning\SARSA_Qlearning_Results\Learning_Curve_Profits.csv)");
+    std::ofstream learning_curve_profits_file(R"(C:\Users\wbras\OneDrive\Documents\Desktop\UA\2nd_Year_Paper\2nd_Year_Paper_Code_C++\SARSA_Qlearning\SARSA_Qlearning_Results\Learning_Curve_Profits.csv)");
     for (const auto &vec : learning_curve_profits)
     {
         for (size_t v{ 0 }; v < vec.size(); ++v)

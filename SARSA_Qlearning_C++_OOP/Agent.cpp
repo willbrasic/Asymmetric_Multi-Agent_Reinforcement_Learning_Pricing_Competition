@@ -31,7 +31,7 @@ bool Agent::convergence_check_fn(bool time_step_above_convergence_check)
     // Is argmax_2[s] == argmax_1[s] for each state s? Initialize to false
     bool same_argmax{ false };
 
-    // Initialize sum for for when argmax_2[s] == argmax_1[s]
+    // Initialize sum for when argmax_2[s] == argmax_1[s]
     int argmax_sum{ 0 };
 
     // If time step is greater than convergence_check, then update argmax_2 for each agent
