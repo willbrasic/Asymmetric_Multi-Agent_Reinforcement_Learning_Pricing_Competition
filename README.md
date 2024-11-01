@@ -93,6 +93,14 @@ outcomes can be sustained via using reward-punishment schemes.
   docker pull willbrasic/sarsa_qlearning:latest
   ```
 
+  ### Run Container
+
+  To run the container, use the following line:
+
+  ```bash
+  docker run --rm willbrasic/sarsa_qlearning:latest
+  ```
+
   ## Results
 
   Below are training curves for the profit measure Δ (defined in the paper) and
