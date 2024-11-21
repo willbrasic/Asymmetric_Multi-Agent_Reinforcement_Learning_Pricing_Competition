@@ -78,7 +78,7 @@ outcomes can be sustained via using reward-punishment schemes.
   git clone https://github.com/willbrasic/Asymmetric_Multi-Agent_Reinforcement_Learning_Pricing_Competition.git
 
   # Navigate to the project directory
-  cd Heterogeneous_MARL_Pricing_Competition
+  cd Asymmetric_Multi-Agent_Reinforcement_Learning_Pricing_Competition
   ```
 
   ## Docker Image
